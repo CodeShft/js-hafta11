@@ -1,22 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from 'react';
 
-const App = ({ prop }) => {
+function Timer() {
+  const intervalRef = useRef();
 
-  const [sayac, sayacGuncelle] = useState(0) 
-  const prevPropRef = useRef(prop) 
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      console.log('Timer tick');
+    }, 1000);
+  };
 
-  useEffect(() => {
-    console.log("Önceki prop:", prevPropRef.current);
-    console.log("Güncel prop:", prop);
-    
-    prevPropRef.current = prop
-  }, [prop]);
+  const stopTimer = () => {
+    clearInterval(intervalRef.current);
+  };
 
   return (
     <div>
-      <p>Prop: {prop}</p>
+      <button onClick={startTimer}>Start Timer</button>
+      <button onClick={stopTimer}>Stop Timer</button>
     </div>
   );
-};
+}
 
-export default App;
+export default Timer;
