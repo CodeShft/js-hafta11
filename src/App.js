@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 function Timer() {
+  const [sayac, sayacGuncelle] = useState(0)
   const intervalRef = useRef();
 
   const startTimer = () => {
@@ -14,9 +15,12 @@ function Timer() {
   };
 
   return (
-    <div>
+    <div> {intervalRef.current}
       <button onClick={startTimer}>Start Timer</button>
       <button onClick={stopTimer}>Stop Timer</button>
+      <br />
+      {sayac}
+      <button onClick={ ()=>{ sayacGuncelle( eskiDeger=>eskiDeger+5 ) } }>Sayaç arttır (+5)</button>
     </div>
   );
 }
