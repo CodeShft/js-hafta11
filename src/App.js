@@ -1,25 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 
-const App = () => {
-  const [sayi, setSayi] = useState(0);
-  const [can, setCan] = useState(3);
-
-  const sayiRef = useRef(0);
+const App = ({ prop }) => {
+  const prevPropRef = useRef(prop);
 
   useEffect(() => {
-    sayiRef.current++
-    
-    console.log("Sayi değişti:", sayi);
-    console.log("SayiRef değeri:", sayiRef.current);
-  }, [sayi]);
+    console.log("Önceki prop:", prevPropRef.current);
+    console.log("Güncel prop:", prop);
+  }, [prop]);
 
   return (
     <div>
-      <p>Sayi: {sayi}</p>
-      <button onClick={() => setSayi(eskiDeger=>eskiDeger+5)}>Sayıyı Arttır(+5)</button>
-      <button onClick={() => setSayi(eskiDeger=>eskiDeger-3)}>Sayıyı Arttır(-3)</button>
-
-      <button onClick={() => setCan(eskiDeger=>eskiDeger-1)}>Canı Azalt(-1)</button>
+      <p>Prop: {prop}</p>
     </div>
   );
 };
