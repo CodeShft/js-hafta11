@@ -1,28 +1,27 @@
-import { useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 
-function App() {
-  const [sayac, sayacGuncelle] = useState(0)
+const App = () => {
+  const [sayi, setSayi] = useState(0);
+  const [can, setCan] = useState(3);
 
-  const puan = useRef(0)
+  const sayiRef = useRef(0);
 
-  function puanGuncelle() {
-    puan.current += 10
-    alert(puan.current)
-  }
+  useEffect(() => {
+    sayiRef.current++
+    
+    console.log("Sayi değişti:", sayi);
+    console.log("SayiRef değeri:", sayiRef.current);
+  }, [sayi]);
 
   return (
     <div>
-      Puan: {puan.current}
+      <p>Sayi: {sayi}</p>
+      <button onClick={() => setSayi(eskiDeger=>eskiDeger+5)}>Sayıyı Arttır(+5)</button>
+      <button onClick={() => setSayi(eskiDeger=>eskiDeger-3)}>Sayıyı Arttır(-3)</button>
 
-      <div>
-        {sayac}
-        <button onClick={ ()=>{ sayacGuncelle(eskiDeger=>eskiDeger+5) } }>Sayaç Arttır</button>
-      </div>
-      <div>
-        <button onClick={puanGuncelle}>Ref Değeri Güncelle</button>
-      </div>
+      <button onClick={() => setCan(eskiDeger=>eskiDeger-1)}>Canı Azalt(-1)</button>
     </div>
   );
-}
+};
 
 export default App;
